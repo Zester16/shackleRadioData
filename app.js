@@ -3,8 +3,7 @@ const axios = require("axios");
 const port = process.env.PORT || 3000
 const app = express()
 
-let allStations =
-{
+let allStations = {
 	one_fm_913: { id: "one_fm_913", name: "One FM 913", country: "singapore", background: "white", fav: true, url: "https://22253.live.streamtheworld.com/ONE_FM_913.mp3", logo: "https://www.onefm.sg/wp-content/assets/3/img/NAV_01_Logo_913-new.svg", stream: null, streamType: false },
 	money_fm_893: { id: "money_fm_893", name: "Money FM 893", country: "singapore", background: "white", fav: false, url: "https://22253.live.streamtheworld.com/MONEY_893.mp3", logo: "https://www.moneyfm893.sg/wp-content/assets/2/img/NAV_01_Logo_893.svg", stream: null, streamType: false },
 	nrj_zurich_109: { id: "nrj_zurich_109", name: "Energy Zurich 109", country: "Swiss", background: "white", fav: false, url: "https://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3", logo: "https://upload.wikimedia.org/wikipedia/en/5/54/Logo_NRJ_2016.png", stream: null, streamType: false },
@@ -18,8 +17,8 @@ let allStations =
 	breeze_fm_nz: { id: "breeze_fm_nz", name: "Breeze FM", country: "New Zealand", background: "white", fav: false, url: "https://tunein-icecast.mediaworks.nz/breeze_tauranga_128kbps", logo: "https://thebreeze.co.nz/design/clientlibs/assets/breeze/imgs/ui/logo-mobile.svg", stream: 'https://radio-api.mediaworks.nz/radio-api/v3/station/thebreeze/tauranga/web', streamType: false },
 	b_fm_899: { id: "b_fm_899", name: "BFM 89.9 Business News", country: "Malaysia", background: "dark", fav: false, url: "https://22283.live.streamtheworld.com/BFMAAC.aac", logo: "https://www.bfm.my/themes/bfmmy/assets/images/bfm-logo.jpg", stream: null, streamType: false },
 	edge_fm_1021: { id: "edge_fm_1021", name: "Edge FM 102.1", country: "Camada", background: "dark", fav: false, url: "https://corus.leanstream.co/CFNYFM", logo: "https://edge.ca/wp-content/uploads/sites/5/2021/02/hero_logo_380x170_edge.png", stream: null, streamType: false },
-	rmf_maxxx_fm: { id: "rmf_maxxx_fm", name: "RMF MAXX FM", country: "Poland", background: "white", url: "https://rs9-krk2.rmfstream.pl/rmf_maxxx", logo: "https://www.rmfmaxxx.pl/assets-16/images/rmfmaxxx-logo.png", stream: null, streamType: false },
-	rmf_fm_pl: { id: "rmf_fm_pl", name: "RMF FM", country: "Poland", background: "white", fav: false, url: "https://rs9-krk2.rmfstream.pl/rmf_fm", logo: "https://www.rmf.fm//2018/img/logo-bez-x2.png", stream: null, streamType: false },
+	rmf_maxxx_fm: { id: "rmf_maxxx_fm", name: "RMF MAXX FM", country: "Poland", background: "white", url: "https://rs9-krk2.rmfstream.pl/rmf_maxxx", logo: "https://www.rmfmaxxx.pl/assets-16/images/rmfmaxxx-logo.png", stream: "https://www.rmfon.pl/stacje/playlista_6.json.txt", streamType: false },
+	rmf_fm_pl: { id: "rmf_fm_pl", name: "RMF FM", country: "Poland", background: "white", fav: false, url: "https://rs9-krk2.rmfstream.pl/rmf_fm", logo: "https://www.rmf.fm//2018/img/logo-bez-x2.png", stream: "https://www.rmfon.pl/stacje/playlista_5.json.txt", streamType: false },
 	vrock_fm_ch: { id: "vrock_fm_ch", name: "Virgin Rock", country: "Switzerland", background: "virgin", fav: false, url: "https://icecast.argovia.ch/vrock", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d1/VirginRadio.png", stream: "https://www.virginradiorock.ch/api/pub/gql/virginrock/AudioLiveData/e0c0de0fa34937485951a3a3c1fb2aaffc94311e", streamType: true },
 	bloomberg_fm: { id: "bloomberg_fm", name: "Bloomberg Radio", country: "USA", background: "white", fav: true, url: "https://24423.live.streamtheworld.com/WBBRAMAAC48.aac", logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Bloomberg_Radio.png", stream: null, streamType: false },
 	bloomberg_fm_backup: { id: "bloomberg_fm_backup", name: "Bloomberg Backup", country: "USA", background: "white", url: "https://18843.live.streamtheworld.com/WBBRAMAAC48.aac", logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Bloomberg_Radio.png", stream: null, streamType: false },
@@ -52,7 +51,12 @@ app.get("/:id", async (req, rep) => {
 				'Content-Type': 'application/json',
 				'Access-Control-Allow-Origin': '*'
 			})
-			rep.send(response.data)
+			if (id == "jazz_fm_rm") {
+				rep.send({ "song": response.data })
+			}
+			else {
+				rep.send(response.data)
+			}
 		}
 		else {
 			rep.status(404)
