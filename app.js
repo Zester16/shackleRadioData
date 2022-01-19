@@ -35,7 +35,9 @@ let allStations =
 	mujrozhals_jazz: { id: "mujrozhals_jazz", name: "ČRo Jazz", country: "Chez Republic", background: "white", fav: false, url: "https://rozhlas.stream/jazz_mp3_128.mp3", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a8/CRo_Jazz_logo.png", stream: null, streamType: false },
 	radio_klassik_backup: { id: "radio_klassik_backup", name: "Radio Klassik BKP", country: "Germany", background: "white", fav: false, url: "https://edge02.streams.klassikradio.de/klassikradio-deutschland", logo: "https://www.klassikradio.de//_nuxt/img/72ebcae.png", stream: "https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?", streamType: false },
 }
-
+app.get("/", (req, rep) => {
+	rep.send("HI")
+})
 app.get("/:id", async (req, rep) => {
 
 	const { id } = req.params
