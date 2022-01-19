@@ -49,7 +49,7 @@ app.get("/:id", async (req, rep) => {
 		console.log(response.status)
 		if (response.status == 200) {
 			rep.set({
-				'Content-Type': 'text/plain',
+				'Content-Type': 'application/json',
 				'Access-Control-Allow-Origin': '*'
 			})
 			rep.send(response.data)
