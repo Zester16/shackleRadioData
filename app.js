@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-
+const port = process.env.PORT || 3000
 const app = express()
 
 let allStations =
@@ -73,7 +73,7 @@ app.get("/:id", async (req, rep) => {
 
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
 
 	console.log("Port 3000 for RS up and running");
 
