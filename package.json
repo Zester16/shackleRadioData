@@ -1,0 +1,15 @@
+{
+  "name": "03_heroku_data_pull",
+  "version": "1.0.0",
+  "description": "app to pull data",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "express": "^4.17.2"
+  }
+}
