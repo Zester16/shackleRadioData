@@ -33,6 +33,7 @@ let allStations = {
 	classic_praha: { id: "classic_praha", name: "Classic Praha", country: "Chez Republic", background: "white", fav: false, url: "https://icecast8.play.cz/classic128.mp3", logo: "https://www.radio.net/images/broadcasts/f9/e8/12702/c300.png", stream: null, streamType: false },
 	mujrozhals_jazz: { id: "mujrozhals_jazz", name: "ČRo Jazz", country: "Chez Republic", background: "white", fav: false, url: "https://rozhlas.stream/jazz_mp3_128.mp3", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a8/CRo_Jazz_logo.png", stream: null, streamType: false },
 	radio_klassik_backup: { id: "radio_klassik_backup", name: "Radio Klassik BKP", country: "Germany", background: "white", fav: false, url: "https://edge02.streams.klassikradio.de/klassikradio-deutschland", logo: "https://www.klassikradio.de//_nuxt/img/72ebcae.png", stream: "https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?", streamType: false },
+	lounge_fm_936: { id: "lounge_fm_936", name: "Lounge FM 93.6", country: "Austria", background: "dark", fav: false, url: "https://s35.derstream.net/ukwwien.mp3", logo: "https://www.lounge.fm/wp-content/themes/loungefm_2014/img/LFM_Logo_800.png", stream: "https://nowplaying.lounge.fm/npjson/LoungeFM?", streamType: true },
 }
 app.get("/", (req, rep) => {
 	rep.send("HI")
